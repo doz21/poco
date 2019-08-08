@@ -40,8 +40,14 @@ if (WIN32)
       endforeach()
     endif (X64)
   endif ()
-  find_program(CMAKE_MC_COMPILER mc.exe HINTS "${sdk_bindir}" "${kit_bindir}" "${kit81_bindir}" ${kit10_bindir}
-    DOC "path to message compiler")
+  if(MINGW)
+  #find_program(CMAKE_MC_COMPILER windmc HINTS "${sdk_bindir}" "${kit_bindir}"
+  #find_program(CMAKE_MC_COMPILER windmc HINTS "${sdk_bindir}" "${kit_bindir}"
+    #DOC "path to message compiler")
+  else()
+   find_program(CMAKE_MC_COMPILER mc.exe HINTS "${sdk_bindir}" "${kit_bindir}" "${kit81_bindir}" ${kit10_bindir}
+     DOC "path to message compiler")
+  endif()
   if (NOT CMAKE_MC_COMPILER)
     message(FATAL_ERROR "message compiler not found: required to build")
   endif (NOT CMAKE_MC_COMPILER)

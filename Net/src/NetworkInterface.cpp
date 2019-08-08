@@ -30,6 +30,8 @@
 		#include "Poco/UnicodeConverter.h"
 	#endif
 	#include "Poco/Error.h"
+	#include <winsock2.h>
+	#include <ws2ipdef.h>
 	#include <wincrypt.h>
 	#include <iphlpapi.h>
 	#include <ipifcons.h>

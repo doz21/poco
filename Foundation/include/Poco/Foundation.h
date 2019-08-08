@@ -29,7 +29,7 @@
 //
 // Ensure that POCO_DLL is default unless POCO_STATIC is defined
 //
-#if defined(_WIN32) && defined(_DLL)
+#if (defined(_WIN32) || defined(_WIN64) || defined(_WIN32_WCE)) && defined(POCO_DLL)
 	#if !defined(POCO_DLL) && !defined(POCO_STATIC)
 		#define POCO_DLL
 	#endif
@@ -44,7 +44,7 @@
 // Foundation_API functions as being imported from a DLL, wheras this DLL sees symbols
 // defined with this macro as being exported.
 //
-#if (defined(_WIN32) || defined(_WIN32_WCE)) && defined(POCO_DLL)
+#if (defined(_WIN32) || defined(_WIN64) || defined(_WIN32_WCE)) && defined(POCO_DLL)
 	#if defined(Foundation_EXPORTS)
 		#define Foundation_API __declspec(dllexport)
 	#else
@@ -96,7 +96,7 @@
 // Include platform-specific definitions
 //
 #include "Poco/Platform.h"
-#if defined(_WIN32)
+#if defined(_WIN32) || defined(_WIN64)
 	#include "Poco/Platform_WIN32.h"
 #elif defined(POCO_VXWORKS)
 	#include "Poco/Platform_VX.h"
